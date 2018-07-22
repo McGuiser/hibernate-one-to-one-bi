@@ -1,12 +1,18 @@
 package com.corey.hibernate.demo.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+/**
+ * @author User
+ *
+ */
 @Entity
 @Table(name="instructor_detail")
 public class InstructorDetail {
@@ -33,6 +39,13 @@ public class InstructorDetail {
 	
 	@Column(name="hobby")
 	private String hobby;
+	
+	// Add new field for instructor (also add getter/setters)
+	
+	// Add @OneToOne annotation
+	
+	@OneToOne(mappedBy="instructorDetail", cascade=CascadeType.ALL)
+	private Instructor instructor;
 
 	public InstructorDetail() {
 
@@ -65,6 +78,14 @@ public class InstructorDetail {
 
 	public void setHobby(String hobby) {
 		this.hobby = hobby;
+	}
+
+	public Instructor getInstructor() {
+		return instructor;
+	}
+
+	public void setInstructor(Instructor instructor) {
+		this.instructor = instructor;
 	}
 
 	@Override
